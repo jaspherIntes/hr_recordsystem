@@ -78,60 +78,36 @@
           <li> <a href="http://localhost/hr_recordsystem/index.php/upload_profPic">
         <img id="ProfPic" src = "<?php echo base_url('uploads/'. $this->session->userdata('emp_id') . '_profPic.jpg') ?>"></img>
        </a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Faculty<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/register_faculty">Add Faculty</a>
-              </li>
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display">View Faculty</a>
-              </li>
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display/display_regular_faculty"> Regular Faculty </a>
-              </li>
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display/display_unRegular_faculty"> Unregular Faculty </a>
-              </li>
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/regularization_candidate"> Candidate for Regularization </a>
-              </li>
-              <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_rankPoints"> Promotions </a>
-              </li>
-               
-            </ul>
-            </li>
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notification <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-           <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification"> Upload </a>
-        </li>
-        <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_profUpdate"> Profile </a>
-        </li>
-        <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_education"> Education </a>
-        </li>
-        <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_eligibilityNoti"> Eligibility </a>
-        </li>
-        <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_trainingNoti"> Training </a>
-        </li>
-        <li>
-            <a href="http://localhost/hr_recordsystem/index.php/display_notification/display_workExp"> Work Experience </a>
-        </li>
-      </ul>
-      </li>
-
-
-        </li>
-
-          
-        </div>
+         <div id="accordion1"> 
+            <h4 style="width=50px; cursor: pointer">Faculty List</h4> 
+            <div class="nav nav-pills nav-stacked">
+        <h4>
+            <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/register_faculty">Add Employee</a>
+        </h4>
+        <h4>
+            <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/regularization_candidate"> Candidate for Regularization </a>
+        </h4>
+        <h4>
+            <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/ranking_committee"> Ranking Committee </a>
+        </h4>
+       
+                <h4>
+                    <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/display">View Faculty</a>
+                </h4>
+                <h4>    
+                    <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/display_notification/display_rankPoints"> Promotions </a>
+                </h4>
+                <h4>
+                    <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/display/display_regular_faculty"> Regular Faculty </a>
+                </h4>
+                <h4>
+                    <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/display/display_unRegular_faculty"> Probitionary Faculty </a>
+                </h4>
+                <h4>
+                    <a class="sub_menu" href="http://localhost/hr_recordsystem/index.php/display/display_deactivatedFaculty"> Deactivated Faculty </a>
+                </h4>
+             </div> 
+         </div>
  
 
           
