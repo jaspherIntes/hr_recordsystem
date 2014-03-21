@@ -115,9 +115,27 @@ class M_ranking extends CI_Model {
 		return $sQuery->row_array(1);
 	}
 
+	public function update_chairProgram($faculty_emp_id)
+	{
+		$sql = "CALL update_chairProgram('".$faculty_emp_id['faculty_emp_id']."', '".$faculty_emp_id['rankProgram']."')";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+       
+		return $sQuery->row_array(1);
+	}
+
 	public function view_ranking_profile($empID)
 	{
 		$sql = "CALL ranking_profile(".$empID.")";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+       
+		return $sQuery->row_array(1);
+	}
+
+	public function view_ranking_chairProfile($empID)
+	{
+		$sql = "CALL ranking_chairProfile(".$empID.")";
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
        
@@ -133,7 +151,8 @@ class M_ranking extends CI_Model {
 								 '".$faculty['research']."',
 								 '".$faculty['community_services']."',
 								 '".$faculty['training_programs']."',
-								 '".$faculty['involvements']."')";
+								 '".$faculty['involvements']."',
+								 '".$faculty['total_points']."')";
 		$this->db->query($sql);
 		$this->db->close();
 	}

@@ -42,7 +42,25 @@ class HR extends CI_Model {
 											 	'".$faculty['philhealth']."',
 											 	'".$faculty['pag_ibig']."',
 											 	'".$faculty['sss']."',
-											 	'".$faculty['tin']."')";
+											 	'".$faculty['tin']."',
+											 	'".$faculty['levelID']."')";
+		$this->db->query($sql);
+		$this->db->close();
+	}
+
+	public function totalPoints($empID)
+	{
+		$sql = "CALL total_points(".$empID.")";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+
+		return $sQuery->row_array(1);
+	}
+
+	public function update_totalPoints($faculty)
+	{
+		$sql = "CALL update_totalPoints( '".$faculty['rankID']."',
+										 '".$faculty['totalPoints']."')";
 		$this->db->query($sql);
 		$this->db->close();
 	}
@@ -58,7 +76,7 @@ class HR extends CI_Model {
 	public function rank_history($faculty)
 	{
 		$sql = "CALL rank_history( '".$faculty['empID']."',
-											 	'".$faculty['rankID']."')";
+									'".$faculty['rankID']."')";
 		$this->db->query($sql);
 		$this->db->close();
 	}
@@ -104,6 +122,15 @@ class HR extends CI_Model {
 	public function display_faculty()
 	{
 		$sql =  "CALL `rms`.`display_faculty`()";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+
+		return $sQuery->result_array();
+	}
+
+	public function display_deactivatedFaculty()
+	{
+		$sql =  "CALL `rms`.`display_deactivatedFaculty`()";
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 
@@ -174,8 +201,8 @@ class HR extends CI_Model {
        
 		return $sQuery->result_array();
 	}
-	public function verify_education($faculty)
 
+	public function verify_education($faculty)
 	{
 		$sql = "CALL verify_education( '".$faculty['emp_id']."',
 					                   '".$faculty['educ_id']."')";
@@ -183,6 +210,7 @@ class HR extends CI_Model {
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 	}
+
 	public function updateEduc($educID)
 	{
 	 	$sql = "CALL updateEduc(".$educID.")";
@@ -214,8 +242,8 @@ class HR extends CI_Model {
 		// }
 
 	}
-	public function verify_profile($faculty)
 
+	public function verify_profile($faculty)
 	{
 		$sql = "CALL verify_profile( '".$faculty['emp_id']."')";
 				
@@ -231,6 +259,7 @@ class HR extends CI_Model {
        
 		return $sQuery->row_array(1);
 	}
+
 	public function display_trainingNoti()
 	{
 		
@@ -242,7 +271,6 @@ class HR extends CI_Model {
 	}
 
 	public function verify_training($faculty)
-
 	{
 		$sql = "CALL verify_training( '".$faculty['faculty_profile_emp_id']."',
 					                   '".$faculty['training_id']."')";
@@ -250,6 +278,7 @@ class HR extends CI_Model {
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 	}
+
 	public function updateTraining($typeID)
 	{
 	 	$sql = "CALL updateTraining(".$typeID.")";
@@ -258,9 +287,9 @@ class HR extends CI_Model {
        
 		return $sQuery->row_array(1);
 	}
-		public function display_workExp()
-	{
-		
+
+	public function display_workExp()
+	{	
 		$sql = "CALL display_workExp()";
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
@@ -276,6 +305,7 @@ class HR extends CI_Model {
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 	}
+
 	public function updateWorkExp($workID)
 	{
 	 	$sql = "CALL updateWorkExp(".$workID.")";
@@ -284,6 +314,7 @@ class HR extends CI_Model {
        
 		return $sQuery->row_array(1);
 	}
+
 	public function verify_regularization($faculty)
 	{
 		$sql = "CALL verify_regularization( '".$faculty['emp_id']."',
@@ -292,6 +323,7 @@ class HR extends CI_Model {
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 	}
+
 	public function updateRegularization($accountID)
 	{
 	 	$sql = "CALL updateRegularization(".$accountID.")";
@@ -300,6 +332,7 @@ class HR extends CI_Model {
        
 		return $sQuery->row_array(1);
 	}
+
      public function display_rankPoints()
 	{
 		
@@ -309,6 +342,7 @@ class HR extends CI_Model {
        
 		return $sQuery->result_array();
 	}
+
 	public function display_eligibilityNoti()
 	{
 		
@@ -318,6 +352,7 @@ class HR extends CI_Model {
        
 		return $sQuery->result_array();
 	}
+
 	public function verify_eligibility($faculty)
 	{
 		$sql = "CALL verify_eligibility( '".$faculty['emp_id']."',
@@ -326,6 +361,7 @@ class HR extends CI_Model {
 		$sQuery = $this->db->query($sql);
 		$this->db->close();
 	}
+
 	public function updateEligibility($eligibilityID)
 	{
 	 	$sql = "CALL updateEligibility(".$eligibilityID.")";
@@ -333,6 +369,33 @@ class HR extends CI_Model {
 		$this->db->close();
        
 		return $sQuery->row_array(1);
-	}	
+	}
+
+	public function display_rankNoti()
+	{
+		
+		$sql = "CALL display_rankNoti()";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+       
+		return $sQuery->result_array();
+	}
 	
+	public function activate($empID)
+	{
+		$sql = "CALL activate_account(".$empID.")";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+
+		return $sQuery->row_array(1);
+	}
+
+	public function deactivate($empID)
+	{
+		$sql = "CALL deactivate_account(".$empID.")";
+		$sQuery = $this->db->query($sql);
+		$this->db->close();
+
+		return $sQuery->row_array(1);
+	}
 }
